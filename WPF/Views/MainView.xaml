@@ -10,7 +10,7 @@
     Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width, Mode=TwoWay}"
     Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height, Mode=TwoWay}"
     MinWidth="380"
-    MinHeight="420"
+    MinHeight="444"
     Background="DeepSkyBlue"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     Icon="/Password Generator Keyword;component/Assets/icon.ico"
@@ -23,48 +23,40 @@
         <local:MainViewModel />
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style x:Key="BaseStyle">
+            <Setter Property="Control.FontSize" Value="18" />
+            <Setter Property="Control.Padding" Value="3" />
+            <Setter Property="Control.Margin" Value="5" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle" BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Control.BorderBrush" Value="White" />
+            <Setter Property="Control.BorderThickness" Value="2" />
+        </Style>
+
+        <Style x:Key="TextBlockStyle" BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Control.Foreground" Value="White" />
+        </Style>
+    </Window.Resources>
+
     <StackPanel Orientation="Vertical">
 
-        <TextBlock
-            Margin="5"
-            FontSize="18"
-            Foreground="White"
-            Text="Service name" />
+        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Service name" />
 
-        <TextBox
-            Margin="5"
-            BorderBrush="White"
-            BorderThickness="2"
-            FontSize="18"
-            Text="{Binding ServiceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding ServiceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <TextBlock
-            Margin="5"
-            FontSize="18"
-            Foreground="White"
-            Text="Keyword" />
+        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Keyword" />
 
-        <TextBox
-            Margin="5"
-            BorderBrush="White"
-            BorderThickness="2"
-            FontSize="18"
-            Text="{Binding Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <TextBlock
-            Margin="5"
-            FontSize="18"
-            Foreground="White"
-            Text="Length of password" />
+        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Length of password" />
 
         <TextBox
             MinWidth="38"
-            Margin="5"
-            BorderBrush="White"
-            BorderThickness="2"
-            FontSize="18"
             InputScope="Number"
             MaxLength="2"
+            Style="{StaticResource TextBoxStyle}"
             Text="{Binding PasswordLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextAlignment="Right" />
 
@@ -78,30 +70,20 @@
             </Slider.LayoutTransform>
         </Slider>
 
-        <TextBlock
-            Margin="5"
-            FontSize="18"
-            Foreground="White"
-            Text="Password" />
+        <TextBlock Style="{StaticResource TextBlockStyle}" Text="Password" />
 
         <TextBox
             x:Name="PasswordTb"
-            Margin="5"
-            BorderBrush="White"
-            BorderThickness="2"
-            FontSize="18"
             IsReadOnly="True"
+            Style="{StaticResource TextBoxStyle}"
             Text="{Binding Password, Mode=TwoWay}"
             TextWrapping="Wrap" />
 
         <CheckBox
-            Margin="5"
-            BorderBrush="White"
-            BorderThickness="2"
             Content="Use special characters"
-            FontSize="18"
             Foreground="White"
-            IsChecked="{Binding UseSpecialCharacters, Mode=TwoWay}" />
+            IsChecked="{Binding UseSpecialCharacters, Mode=TwoWay}"
+            Style="{StaticResource TextBoxStyle}" />
 
         <Button
             Margin="5,5,5,6"
